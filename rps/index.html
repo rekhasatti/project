@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors - Ultimate Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .bounce { animation: bounce 0.5s infinite; }
+        .shake { animation: shake 0.3s infinite; }
+        .pulse { animation: pulse 1s infinite; }
+        
+        .choice-btn {
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .choice-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .choice-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .result-text {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal {
+            transition: all 0.3s ease;
+        }
+        
+        .modal.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .modal.hide {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-20px);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-blue-100 to-purple-100 min-h-screen flex flex-col items-center justify-center p-4">
+    <div class="max-w-md w-full bg-white rounded-2xl shadow-xl overflow-hidden p-6">
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Rock Paper Scissors</h1>
+            <p class="text-gray-600 mt-2">Choose your weapon wisely!</p>
+        </div>
+
+        <div class="flex justify-between items-center mb-8 bg-gray-50 rounded-xl p-4 shadow-inner">
+            <div class="text-center">
+                <p class="font-bold text-lg text-gray-700">YOU</p>
+                <p id="userScore" class="text-3xl font-bold text-blue-600">0</p>
+            </div>
+            <div class="text-center">
+                <p class="font-bold text-gray-700">-</p>
+                <p class="text-2xl">VS</p>
+            </div>
+            <div class="text-center">
+                <p class="font-bold text-lg text-gray-700">CPU</p>
+                <p id="computerScore" class="text-3xl font-bold text-red-600">0</p>
+            </div>
+        </div>
+
+        <div id="choices" class="flex justify-center space-x-6 mb-8">
+            <button data-choice="rock" class="choice-btn bg-indigo-100 text-indigo
